@@ -8,6 +8,7 @@
 import UIKit
 
 struct NetworkManager: API {
+    static let shared = NetworkManager()
     
     func getItems(
         pageIndex: UInt,
