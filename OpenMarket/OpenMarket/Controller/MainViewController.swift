@@ -8,27 +8,34 @@ import UIKit
 
 class MainViewController: UIViewController {
 
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     @IBOutlet weak var container: UICollectionView!
     
     var goodsList = [GoodsList]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        indicator.hidesWhenStopped = true
+        
+        container.delegate = self
+        container.dataSource = self
+        
+        navigationItem.title = "아아마켓"
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        container.delegate = self
-        container.dataSource = self
-        
         do {
+            indicator.startAnimating()
             try NetworkManager.shared.getItems(pageIndex: 1) { [weak self] result in
                 switch result {
                 case .success(let list):
                     self?.goodsList.append(list)
                     DispatchQueue.main.async {
                         self?.container.reloadData()
+                        self?.indicator.stopAnimating()
                     }
                 case .failure(let error):
                     print(error)
@@ -52,9 +59,12 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = container.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        guard let cell = container.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? GoodsListCell else {
+            return UICollectionViewCell()
+        }
         
-        cell.backgroundColor = .red
+        
+        cell.configure(item: goodsList[indexPath.section].items[indexPath.item])
         
         return cell
     }
