@@ -8,6 +8,12 @@
   * [5. Unit-Test](#5-unit-test)
   * [6. 그 밖에...](#6-else)
 
+<br>
+
+---
+
+<br>
+
 ### 1. Network
 | 주제 | 내용 |
 | --- | --- |
@@ -23,9 +29,12 @@
 | API | - Application Programming Interface <br> - 개발자 사이에 공유해야하는 명세서를 API라고 부르는 것으로 이해했다 |
 | 네트워크를 공부하면서 부수적으로 공부가 된 내용 | `UUID`: Universal Unique Identifier, 중복이 발생할 가능성은 있지만 보편적으로 유니크하다고 인정하는 ID(대충 easd13-asd21-123asd와 같은 형식) <br> `Result`: 테스트에서만 사용을 하던 타입이었는데, 네트워크에 대한 결과에도 매우 유용하게 사용할 수 있는, 정말로 Result 그 자체인 타입이었다) |
 
+
 <br>
 
 ---
+
+<br>
 
 ### 2. URLSession
 * 이것에 대해 공부하기에 앞서 URL이 무엇이고 Session이 무엇인지 짚고 넘어갈 필요가 있어서 공부를 했었다
@@ -37,6 +46,12 @@
 | URLSessionTaskDelegate | URLSession도 delegation pattern을 채택한 타입인데, 인증 실패, 서버에서 데이터가 도착했을 때, 데이터 캐싱과 관련된 기능들을 URLSessionTaskDelegate를 통해 구현할 수 있다 |
 | Async, Concurrent | - 알아서 비동기적으로 돌아간다. <br> - cancel과 관련된 기능들을 제공한다고 하는데 그런 점에서 내부적으로 OperationQueue를 사용하는 것이 아닌가 하는 짐작을 하고 있으나 정확히 모르겠다. <br> - UIKit과 관련된 내용들은 다시 메인스레드에서 돌아가도록 조정해줘야 한다 |
 
+<br>
+
+---
+
+<br>
+
 ### 3. UICollectionView
 
 | 주요 내용 | 설명 |
@@ -47,6 +62,11 @@
 | UICollectionViewDataSource | 셀과 데이터를 매니징하는 delegate, 셀을 생성하고, 데이터를 셀을 초기화하거나 데이터를 입력받거나... 이런 건 여기서 해야한다. 강제되는 건 아니지만 그렇게 함으로써 각자의 책임을 명확히 할 수 있을 것이다 |
 | UICollectionViewDelegateFlowLayout, UICollectionViewDiffableDataSource | - 앞서 말한 delegate들을 확장하려는 시도가 엿보인다 <br> - 각각 Delegate와 DataSource로부터 뻗어 나온 새로운 프로토콜이다. 실제로 사용까지 해보고 싶었으나, 뇌용량의 한계에 부딪혀 일단 기본형이 되는 녀석들만 제대로 해보자는 마음으로 공부를 하고 구현을 했다
 
+<br>
+
+---
+
+<br>
 
 ### 4. Layout
 
@@ -59,6 +79,11 @@
 | Bounds | self로부터의 CGRect |
 | Frame? Bounds? | - 활용사례를 생각하면 좋다 <br> - Frame은 superview의 CGRect이기 때문에, Superview에게 영향을 받아 값을 가지고 있고 화면에 그려진다 <br> - Bounds는 self의 CGRect이기 때문에, 이것의 Subview들에게 영향을 준다|
 
+<br>
+
+---
+
+<br>
 
 ### 5. Unit-Test
 * 새로 알게 된 내용과 함께, 이미 공부했던 내용도 있었으나 제대로 모르고 있었던 내용도 있어 복습을 하고 다시 정리를 했다
@@ -70,6 +95,11 @@
 | XCTestCase.wait(for:, timeout:) | - for에는 [XCTestExpectation]가 들어가고 timeout에는 TimeInterval이 들어간다 |
 | Network-Test | 위의 2가지 내용을 응용하여 실제로 네트워크를 이용하는, 서버와 통신하는 내용을 테스트 할 수 있다 |
 
+<br>
+
+---
+
+<br>
 
 ### 6. else...
 | ***프로젝트 기간 중 공부를 하게 된 내용*** |
