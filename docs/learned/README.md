@@ -77,7 +77,7 @@
 | CGRect | 2차원 좌표와 크기를 가지고 있는 구조체(CGPoint, CGRect) |
 | Frame | superview로부터의 CGRect |
 | Bounds | self로부터의 CGRect |
-| Frame? Bounds? | - 활용사례를 생각하면 좋다 <br> - Frame은 superview의 CGRect이기 때문에, Superview에게 영향을 받아 값을 가지고 있고 화면에 그려진다 <br> - Bounds는 self의 CGRect이기 때문에, 이것의 Subview들에게 영향을 준다|
+| Frame? Bounds? | - 활용사례를 생각하면 좋다 <br> - Frame은 superview에 대한 CGRect이기 때문에, Superview에게 영향을 받아 값을 가지고 있고 화면에 그려진다 <br> - Bounds는 self의 CGRect이기 때문에, 이것의 Subview들에게 영향을 준다|
 | Offset | CGPoint, bounds.origin과 같다 <br> 즉 해당 뷰가 시작하는 지점(중심?)을 가리키고 있다고 보면 된다 |
 | Inset | - 뷰의 내부 여백 <br> - 왜 괜히 헷갈리게(?) offset inset 이렇게 해놨을까? 내가 모르는 어떤 지식으로 이 둘이 명료하게 구분이 되는 건가? |
 <br>
