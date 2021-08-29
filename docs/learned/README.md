@@ -1,5 +1,12 @@
 # 𝞪. 이번 프로젝트를 통해 학습한 것
 
+* 목차
+  * [1. Network](#1-network)
+  * [2. URLSession](#2-urlsession)
+  * [3. UICollectionView](#3-uicollectionview)
+  * [4. Layout](#4-layout)
+  * [5. Unit-Test](#5-unit-test)
+  * [6. 그 밖에...](#6-else)
 
 ### 1. Network
 | 주제 | 내용 |
@@ -12,7 +19,10 @@
 | URL | Uniform Resource Locator <br> 자원의 위치를 가리키는 주소, 규약, 참조 |
 | form-data | 하냐의 양식form으로 정의된 데이타셋data <br> 이 양식을 만드는 게 처음엔 많이 까다롭지만, 만들고 나면 돌려쓰면 되는 거라서 편한 장점이 있었다 <br> 주요 특징으로는 boundary라는 것이 필요하고, 양식의 마지막에 있는 boundary는 --을 뒤에 달아 닫아줘야 했다는 점, 계행을 \n이 아니라 \r\n을 사용해야 했다는 점이 있었다. 또 데이터가 배열로 들어가는 form의 경우에는 name에 []을 추가적으로 명시해야했다는 점...|
 | multipart / form-data | 위의 form-data를 여러개를 가지고 있는 data-set | 
-| 네트워크를 공부하면서 부수적으로 공부가 된 내용 | `UUID`: Universal Unique Identifier, 중복이 발생할 가능성은 있지만 보편적으로 유니크하다고 인정하는 ID(대충 easd13-asd21-123asd와 같은 형식) <br> `Result`: 테스트에서만 사용을 하던 타입이었는데, 네트워크에 대한 결과에도 매우 유용하게 사용할 수 있는, 정말로 Result 그 자체인 타입이었다   ) 
+| Cache | - 캐시란 주체가 필요한 데이터를 미리 저장을 해놓고 제공하는 것이다 <br> - 컴퓨터 구조에서 사용되던 캐시메모리는, 이 개념을 사용한 하나의 사례라고 볼 수 있다(여기서의 주체는 CPU) <br> - 자주 사용되는 데이터를 저장하거나, 곧 사용할 데이터를 미리 저장해서 이 데이터에 접근하는 오버헤드를 줄이는 게 목적이다 <br> - 둘을 분리해서 언급했으나 데이터를 미리 저장해놓고 이에 대한 접근을 빠르게 하는 게 목표라고 할 수 있겠다 <br> - 주체에 따라 다양한 캐싱이 존재한다. 캐싱 서버, 메모리 캐싱, 파일 캐싱 등등... 반드시 캐시 메모리에 캐시를 하는 것은 아니다 단지 하나의 사례일 뿐이다 | 
+| API | - Application Programming Interface <br> - 개발자 사이에 공유해야하는 명세서를 API라고 부르는 것으로 이해했다 |
+| 네트워크를 공부하면서 부수적으로 공부가 된 내용 | `UUID`: Universal Unique Identifier, 중복이 발생할 가능성은 있지만 보편적으로 유니크하다고 인정하는 ID(대충 easd13-asd21-123asd와 같은 형식) <br> `Result`: 테스트에서만 사용을 하던 타입이었는데, 네트워크에 대한 결과에도 매우 유용하게 사용할 수 있는, 정말로 Result 그 자체인 타입이었다) |
+
 <br>
 
 ---
@@ -31,7 +41,41 @@
 
 | 주요 내용 | 설명 |
 | --- | --- |
-| UICollectionView | |
-| UICollectionViewCell | |
-| UICollectionViewDelegate | |
-| UICollectionViewDataSource | |
+| UICollectionView | UITableView가 다소 정적으로 데이터를 보여준다면, UICollectionView는 아주 동적으로 데이터를 보여줄 수 있다 <br> 하지만 내부적으로 돌아가는 전체적인 흐름은 UITableView와 유사했다 <br> Delegation Pattern을 채택하여 UI와 Data를 매니징하는 점과 reuseableQueue를 통해 cell을 재사용한다는 점, IndexPath를 사용한다는 점이 특히 그랬다|
+| UICollectionViewCell | UICollectionView는 특히 주의할 점이 cell과 data를 prefetch하는 것이 기본적으로 참이라는 점이다. <br> 플로우를 잘 이해하여 후술할 delegate와 dataSource를 적절히 사용하는 것이, 그렇게 함으로써 cell의 기능을 구분하고 분리하는 것이 에러를 더 적게 일으키는 방법이 될 수 있겠다|
+| UICollectionViewDelegate | 유저와의 상호작용에 사용되는 delegate, display와 같은 실제로 UI와 관련된 요소는 이 delegate를 통해 구현할 수 있다 |
+| UICollectionViewDataSource | 셀과 데이터를 매니징하는 delegate, 셀을 생성하고, 데이터를 셀을 초기화하거나 데이터를 입력받거나... 이런 건 여기서 해야한다. 강제되는 건 아니지만 그렇게 함으로써 각자의 책임을 명확히 할 수 있을 것이다 |
+| UICollectionViewDelegateFlowLayout, UICollectionViewDiffableDataSource | - 앞서 말한 delegate들을 확장하려는 시도가 엿보인다 <br> - 각각 Delegate와 DataSource로부터 뻗어 나온 새로운 프로토콜이다. 실제로 사용까지 해보고 싶었으나, 뇌용량의 한계에 부딪혀 일단 기본형이 되는 녀석들만 제대로 해보자는 마음으로 공부를 하고 구현을 했다
+
+
+### 4. Layout
+
+| 주요 내용 | 설명 |
+| --- | --- |
+| CGPoint | 2차원 좌표를 가지고 있는 구조체(x,y) |
+| CGSize | 2차원 크기를 가지고 있는 구조체(width, height) |
+| CGRect | 2차원 좌표와 크기를 가지고 있는 구조체(CGPoint, CGRect) |
+| Frame | superview로부터의 CGRect |
+| Bounds | self로부터의 CGRect |
+| Frame? Bounds? | - 활용사례를 생각하면 좋다 <br> - Frame은 superview의 CGRect이기 때문에, Superview에게 영향을 받아 값을 가지고 있고 화면에 그려진다 <br> - Bounds는 self의 CGRect이기 때문에, 이것의 Subview들에게 영향을 준다|
+
+
+### 5. Unit-Test
+* 새로 알게 된 내용과 함께, 이미 공부했던 내용도 있었으나 제대로 모르고 있었던 내용도 있어 복습을 하고 다시 정리를 했다
+
+| 주요 내용 | 설명 |
+| --- | --- |
+| Test-Double(이하 TD) | - 테스트를 위한 스턴트맨들 <br> `dummy`: 아무런 기능은 없으나(실사용은 않으나) 단지 존재가 필요해 만들어 놓는 TD <br> `stub`: 결과를 반환하는 기능이 있는 TD (stub ⊃ dummy) <br> `spy` stub이면서 값을 기록하여 가지고 있는 TD (spy ⊃ stub) <br> `fake`: 실은 매우 복잡한 개체지만 단순화 한 개체, 주로 DB (spy ⊃ fake) <br> `mock`: 위의 내용들이 어떤 값, 상태를 위한 TD라면, mock은 행위에 대한 TD로 행위에 대한 분기, 복잡한 행위를 간단하게 증명한다거나 하는 TD이다. XCTest가 Asset를 사용한다는 점에서 Mock의 한 종류라고 볼 수 있겠다 |
+| XCTestExpectation | - 비동기 클로저, 특히 네트워크 테스트에 사용할 수 있는 타입 <br> - expectedFulfillmentCount라고 하는 프로퍼티와 fulfill이라고 하는 메소드를 통해서 어떤 상태를 충족했는지 안했는지를 검증할 수 있다 |
+| XCTestCase.wait(for:, timeout:) | - for에는 [XCTestExpectation]가 들어가고 timeout에는 TimeInterval이 들어간다 |
+| Network-Test | 위의 2가지 내용을 응용하여 실제로 네트워크를 이용하는, 서버와 통신하는 내용을 테스트 할 수 있다 |
+
+
+### 6. else...
+| ***프로젝트 기간 중 공부를 하게 된 내용*** |
+| --- |
+| 공부는 했으나 실사용은 못해봤기에 제대로 된 복습이 필요할 것 같다 |
+| iOS File System |
+| CoreData |
+| NSCache |
+| Proxy |

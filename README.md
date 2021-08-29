@@ -12,7 +12,7 @@
 > 코든: <https://github.com/ictechgy> <br>
 > 루얀: <https://github.com/KimWanki> <br>
 > 
-의 도움을 받았습니다
+의 도움을 받았습니다. 정말 감사합니다👍
 
 </div>
 </details>
