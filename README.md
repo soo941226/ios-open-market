@@ -1,8 +1,7 @@
 # iOS 커리어 스타터 캠프, 오픈마켓 프로젝트
 
----
-
 ### 수박, ~~EHD~~(😭), 라자냐 (라자냐와 아이들)
+
 <details>
 <summary>감사한 분들</summary>
 <div>
@@ -20,17 +19,17 @@
 
 목차
 
-### 𝞪. 이번 프로젝트를 통해 학습한 것 [> About detail](./docs/learned/README.md)
+### 𝞪. 이번 프로젝트를 통해 학습한 것 [> Detail](./docs/learned/README.md)
 |배운거|내용|
 |---|---|
 |TEST|test|
 
-### 𝞫. 프로젝트를 진행하며 겪었던 문제들  [> About detail](./docs/issue/README.md)
+### 𝞫. 프로젝트를 진행하며 겪었던 문제들  [> Detail](./docs/issue/README.md)
 |고민했던 문제들|해결책|
 |---|---|
 |TEST|test|
 
-### 𝞈. 남겨진 것들....😅  [> About detail](./docs/remained/README.md)
+### 𝞈. 남겨진 것들....😅  [> Detail](./docs/remained/README.md)
 
 |남겨진거|짐작|
 |---|---|
